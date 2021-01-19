@@ -6,9 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\UserDetails;
 use  App\Http\Requests\ValidationRequest;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Auth;
 class RegisterController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
     public function registerCheck(ValidationRequest $req)
     {
         
@@ -22,12 +26,15 @@ class RegisterController extends Controller
             $user -> dob = $req -> dob;
             $user -> phone = $req -> phone;
             $user -> remember_token = $req -> _token;
-            $user -> save();
-            // dd($req);
-            
-            echo "<script>alert('Thankyou for registration.');</script>";
-            return redirect('login');
-
+            $user -> save();  
+            $credentials = $req->only('email', 'password');
+            if (Auth::attempt($credentials)) {
+                $req->session()->regenerate();
+                if(Auth::check())
+                {
+                    return redirect()->intended('home');
+                }
+            }
         }
         else
         {

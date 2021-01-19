@@ -10,6 +10,8 @@ use App\Models\UserDetails;
 
 class LoginrController extends Controller
 {
+   
+    
     public function loginCheck(Request $req)
     {
        $validated=Validator::make($req->all(),
@@ -24,13 +26,9 @@ class LoginrController extends Controller
             // dd($users);
             $credentials = $req->only('email', 'password');
             //  dd($credentials);
-            $user = Auth::user();
-            echo  "<br>user".$user;
+            
             if (Auth::attempt($credentials)) {
                 $req->session()->regenerate();
-                echo "<br>heelo";
-                $user = Auth::id();
-                echo  "<br>user".$user;
                 if(Auth::check())
                 {
                     return redirect()->intended('home');

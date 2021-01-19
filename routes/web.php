@@ -3,6 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginrController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AddController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,15 +23,33 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/registersuccess',[RegisterController::class, 'registerCheck']);
-Route::view('register','register');
-
-Route::post('/loginsuccess',[LoginrController::class, 'loginCheck']);
-Route::view('login','login');
-
-Route::get('home',function()
+Route::post('/register',[RegisterController::class, 'registerCheck']);
+Route::get('/register',function()
 {
-    return view('home');
+    return view('register');
 });
 
+Route::post('/login',[LoginrController::class, 'loginCheck']);
+Route::get('/login',function()
+{
+    return view('login');
+})->middleware('guest');
 
+Route::get('home',[HomeController::class, 'index']);
+
+Route::get('logout',function(Request $request){
+    Auth::logout();
+
+    $request->session()->invalidate();
+
+    $request->session()->regenerateToken();
+
+    return redirect('/');
+});
+
+Route::post('/home',[AddController::class, 'addCheck']);
+
+Route::post('/home/update/{id}',[AddController::class, 'updateCheck']);
+
+// Route::get('/home/delete/',[AddController::class, 'deleteCheck'])->name('/home/delete/');
+Route::get('/home/delete/{id}',[AddController::class, 'deleteCheck'])->name('/home/delete/id}');

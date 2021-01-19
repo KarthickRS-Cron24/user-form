@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <title>Document</title>
+    <title>RegisterPage</title>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -14,11 +14,13 @@
 </head>
 <body>
     <div class="container-fluid">
-        <div class='row col-md-12 well text-right'>
+        <div class="row well ">
+        <div class='col-md-12 text-right'>
             <div class='btn-group'>               
                 <a href="/login" class="btn btn-primary">Login</a>
                 <a href="/register" class="btn btn-primary">Register</a>
             </div>
+        </div>
         </div>
     </div>
     <div class="container">
@@ -27,9 +29,9 @@
             <div class="col-md-8">
                 <div class="card well">
                     <div class="card-header text-center"><h2>Registeration Here!!!!</h2></div>
-                    <br><br>
+                    <br>
                     <div class="card-body">
-                        <form method="POST" action="/registersuccess">
+                        <form method="POST" action="/register">
                             @csrf
 
                             <div class="form-group row">
@@ -101,9 +103,8 @@
     </div>
     <script>
         $(document).ready(function(){
-            $("#dob").datepicker({
-                dateFormat: 'yy-mm-dd'
-            });
+            var currentDate = new Date(); 
+            $("#dob").datepicker({ dateFormat: 'yy-mm-dd'});
         })
     </script>
 </body>

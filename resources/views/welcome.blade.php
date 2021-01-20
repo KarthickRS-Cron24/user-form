@@ -21,6 +21,7 @@
         </style>
     </head>
     <body class="antialiased">
+    <a href='admin/login' class="text-lg text-right btn text-gray-700 underline">Admin Login</a>
     <a href='login' class="text-lg text-right btn text-gray-700 underline">Login</a>
     <a href='register' class="text-lg text-right btn text-gray-700 underline">Register</a>
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">

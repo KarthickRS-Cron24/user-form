@@ -16,7 +16,7 @@ class AddController extends Controller
     public function addCheck(Request $request)
     {
         $user_id=Auth::id();
-        // echo $user_id.$request->date;
+        echo $user_id.$request->date;
         UserInfo::create([
             'user_id' => $user_id, 
             'title' => $request->title,

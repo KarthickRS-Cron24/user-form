@@ -12,15 +12,11 @@ class HomeController extends Controller
 {
    
 
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
-    }
     public function index()
     {
         $id = Auth::id();
         $info=UserInfo::where('user_id',$id)->get();
         
-        return view('home',compact("info"))->middleware('guestgit');
+        return view('home',compact("info"));
     }
 }
